@@ -58,8 +58,8 @@ def get_workspaces():
 
 
 @click.command('projects', short_help='Show all workspace projects')
-@click.option('-w', '--workspace', 'workspace')
-@click.option('-n', '--name', 'name')
+@click.option('-w', '--workspace', 'workspace', help='workspace id')
+@click.option('-n', '--name', 'name', help='project name (can be a regex)')
 def get_projects(workspace, name):
     if name is not None:
         projects = api.get_projects_by_name(name, workspace)
@@ -74,8 +74,8 @@ def get_projects(workspace, name):
 
 
 @click.command('tags', short_help='Show all workspace tags')
-@click.option('-w', '--workspace', 'workspace')
-@click.option('-n', '--name', 'name')
+@click.option('-w', '--workspace', 'workspace', help='workspace id')
+@click.option('-n', '--name', 'name', help='tag name (can be a regex)')
 def get_tags(workspace, name):
     if name is not None:
         tags = api.get_tags_by_name(name, workspace)
@@ -90,8 +90,8 @@ def get_tags(workspace, name):
 
 
 @click.command('project-tasks', short_help='Show all tasks of a project')
-@click.option('-w', '--workspace', 'workspace')
-@click.option('-n', '--name', 'name')
+@click.option('-w', '--workspace', 'workspace', help='workspace id')
+@click.option('-n', '--name', 'name', help='task name (can be a regex)')
 @click.argument('project')
 def get_tasks(workspace, project, name):
     tasks: []
@@ -108,9 +108,9 @@ def get_tasks(workspace, project, name):
 
 
 @click.command('time-entries', short_help='Find time entries')
-@click.option('-w', '--workspace', 'workspace')
-@click.option('-s', '--start', 'start')
-@click.option('-e', '--end', 'end')
+@click.option('-w', '--workspace', 'workspace', help='workspace id')
+@click.option('-s', '--start', 'start', help='the beginning of the period to look for in ISO-8601 format (eg. "2019-04-16T05:15:32.999Z")')
+@click.option('-e', '--end', 'end', help='the beginning of the period to look for in ISO-8601 format (eg. "2019-04-16T05:15:32.999Z")')
 def find_time_entries(workspace, start, end):
     entries = api.find_time_entries(workspace, start, end)
     if VERBOSE:
@@ -122,7 +122,7 @@ def find_time_entries(workspace, start, end):
 
 @click.command('fill-time-entries', short_help='Fill time entries a period')
 @click.argument('file')
-@click.option('--partial', is_flag=True, help="Specify that the time entries are partially completed", required=False)
+@click.option('--partial', is_flag=True, help="specify that the time entries are partially completed", required=False)
 def fill_entries(file, partial: bool = None):
     with open(file) as jsonFile:
         time_entries = TimeEntriesFile.load_time_entries(jsonFile.read())
