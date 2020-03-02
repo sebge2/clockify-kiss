@@ -140,7 +140,7 @@ class TimeEntriesReporter:
                 if (generated_time_entry is not None) and generated_time_entry.is_personal_holiday(self.user_settings):
                     nb += generated_time_entry.get_time_entries_duration_in_secs()
 
-        return f'Number personal holidays in hour(s): ' \
+        return f'Number personal holidays in day(s): ' \
                f'{BOLD}{from_seconds_to_days(nb, self.user_settings.day.get_number_working_secs())}{RESET_FORMAT}'
 
     def sort_day_time_entries(self, entries: List[TimeEntryDiff]) -> List[TimeEntryDiff]:
