@@ -5,7 +5,7 @@ setup(
     version='1.0.0',
     py_modules=['clockify_kiss'],
     author='Sébastien Gérard',
-    url='https://github.com/sebge2emasphere/clockify',
+    url='https://github.com/sebge2emasphere/clockify-kiss',
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
     install_requires=[
