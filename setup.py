@@ -15,7 +15,7 @@ setup(
         'click==6.7',
         'idna==2.7',
         'requests>=2.20.0',
-        'urllib3==1.23',
+        'urllib3==1.24.2',
         'tzlocal==2.0.0'
     ],
     entry_points={
