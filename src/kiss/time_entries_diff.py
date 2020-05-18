@@ -1,12 +1,12 @@
 from datetime import time
 from typing import List
 
-from .clockify_api import ClockifyApi
-from .clockify_model import ClockifyTimeEntry
-from .time_entries_file import DateTimeInterval
-from .time_entries_generator import GeneratedDaysTimeEntries, GeneratedDayTimeEntries, GeneratedTimeEntry
-from .user_settings import UserSettings
-from .utils import from_datetime_to_zulu_string, set_date_at_time
+from src.kiss.clockify_api import ClockifyApi
+from src.kiss.clockify_model import ClockifyTimeEntry
+from src.kiss.time_entries_file import DateTimeInterval
+from src.kiss.time_entries_generator import GeneratedDaysTimeEntries, GeneratedDayTimeEntries, GeneratedTimeEntry
+from src.kiss.user_settings import UserSettings
+from src.kiss.utils import from_datetime_to_zulu_string, set_date_at_time
 
 
 class TimeEntryDiff:

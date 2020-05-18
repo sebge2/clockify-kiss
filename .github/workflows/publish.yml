@@ -1,0 +1,49 @@
+name: Publish
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.6]
+        os: [macos-latest, windows-latest, ubuntu-16.04]
+        include:
+          - os: ubuntu-16.04
+            binary_target: x86_64-linux-glib2.3
+            artifact_name: dist/clockify-kiss
+            asset_name: clockify-kiss-linux-amd64
+          - os: windows-latest
+            binary_target: x86_64-pc-windows-msvc
+            artifact_name: dist/clockify-kiss.exe
+            asset_name: clockify-kiss-windows-amd64.exe
+          - os: macos-latest
+            binary_target: x86_64-apple-darwin
+            artifact_name: dist/clockify-kiss
+            asset_name: clockify-kiss-macos-amd64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+      - name: Build Binary
+        run: |
+          pyinstaller -F -n clockify-kiss --paths=./src/kiss ./src/kiss/__init__.py
+      - name: Upload Binaries
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.asset_name }}
+          tag: ${{ github.ref }}

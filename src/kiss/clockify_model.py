@@ -1,7 +1,7 @@
 from typing import List
 
-from .time_entries_file import DateTimeInterval
-from .utils import from_z_datetime_to_local, parse_z_datetime
+from src.kiss.time_entries_file import DateTimeInterval
+from src.kiss.utils import from_z_datetime_to_local, parse_z_datetime
 
 
 class ClockifyTimeInterval:

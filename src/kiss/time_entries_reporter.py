@@ -1,12 +1,13 @@
 import os
+import sys
 from typing import List
 
-from .clockify_api import ClockifyApi
-from .time_entries_checker import TimeEntriesCheckReport
-from .time_entries_diff import DaysTimeEntriesDiff, DayTimeEntriesDiff, TimeEntryDiff
-from .time_entries_file import DateTimeInterval
-from .user_settings import UserSettings
-from .utils import RESET_FORMAT, COLOR_YELLOW, COLOR_RED, COLOR_GREEN, BOLD, from_seconds_to_hours, from_seconds_to_days
+from src.kiss.clockify_api import ClockifyApi
+from src.kiss.time_entries_checker import TimeEntriesCheckReport
+from src.kiss.time_entries_diff import DaysTimeEntriesDiff, DayTimeEntriesDiff, TimeEntryDiff
+from src.kiss.time_entries_file import DateTimeInterval
+from src.kiss.user_settings import UserSettings
+from src.kiss.utils import RESET_FORMAT, COLOR_YELLOW, COLOR_RED, COLOR_GREEN, BOLD, from_seconds_to_hours, from_seconds_to_days
 
 
 class TimeEntriesReporter:
@@ -20,7 +21,7 @@ class TimeEntriesReporter:
     def create_report(self, time_entries_diff: DaysTimeEntriesDiff, report: TimeEntriesCheckReport) -> str:
         concatenated = []
 
-        with open(f'{os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))}/logo.txt') as logo_file:
+        with open(self.get_logo_file()) as logo_file:
             concatenated.append(logo_file.read())
 
         concatenated.append('\n\n')
@@ -46,6 +47,12 @@ class TimeEntriesReporter:
         concatenated.append(f'{self.create_nb_personal_holiday_summary(time_entries_diff)}\n')
 
         return ''.join(concatenated)
+
+    def get_logo_file(self):
+        if getattr(sys, 'frozen', False):
+            return f'{os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))}/logo.txt'
+        else:
+            return 'src/kiss/logo.txt'
 
     def create_days_report(self, time_entries_diff: DaysTimeEntriesDiff, report: TimeEntriesCheckReport) -> str:
         concatenated = []

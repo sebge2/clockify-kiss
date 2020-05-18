@@ -2,7 +2,7 @@ import json
 from datetime import time, timedelta, datetime, date
 from typing import List
 
-from .utils import parse_user_time
+from src.kiss.utils import parse_user_time
 
 
 class TaskSettings:
