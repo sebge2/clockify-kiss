@@ -52,7 +52,7 @@ class TimeEntriesReporter:
         if getattr(sys, 'frozen', False):
             return f'{os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))}/logo.txt'
         else:
-            return 'src/kiss/logo.txt'
+            return 'kiss/logo.txt'
 
     def create_days_report(self, time_entries_diff: DaysTimeEntriesDiff, report: TimeEntriesCheckReport) -> str:
         concatenated = []
