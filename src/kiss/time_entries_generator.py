@@ -2,12 +2,12 @@ import uuid
 from datetime import date, timedelta, datetime, time
 from typing import List
 
-from src.kiss.clockify_api import ClockifyApi
-from src.kiss.clockify_model import ClockifyTimeNewEntry, ClockifyTimeInterval
-from src.kiss.time_entries_file import TimeEntriesFile, DateTimeInterval, DateInterval
-from src.kiss.user_settings import DaySettings
-from src.kiss.user_settings import UserSettings
-from src.kiss.utils import from_datetime_to_zulu_string, set_date_at_time, get_duration_in_secs
+from kiss.clockify_api import ClockifyApi
+from kiss.clockify_model import ClockifyTimeNewEntry, ClockifyTimeInterval
+from kiss.time_entries_file import TimeEntriesFile, DateTimeInterval, DateInterval
+from kiss.user_settings import DaySettings
+from kiss.user_settings import UserSettings
+from kiss.utils import from_datetime_to_zulu_string, set_date_at_time, get_duration_in_secs
 
 
 class GeneratedTimeEntry:

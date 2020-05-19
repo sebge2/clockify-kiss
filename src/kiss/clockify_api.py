@@ -4,9 +4,9 @@ from typing import List
 
 import requests
 
-from src.kiss.clockify_model import ClockifyWorkspace, ClockifyProject, ClockifyTimeEntry, ClockifyTask, ClockifyUser, \
+from kiss.clockify_model import ClockifyWorkspace, ClockifyProject, ClockifyTimeEntry, ClockifyTask, ClockifyUser, \
     ClockifyTag, ClockifyTimeNewEntry
-from src.kiss.user_settings import UserSettings
+from kiss.user_settings import UserSettings
 
 ENDPOINT = "https://api.clockify.me/api/v1/"
 

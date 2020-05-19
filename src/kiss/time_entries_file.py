@@ -3,7 +3,7 @@ from datetime import date
 from datetime import datetime
 from typing import List
 
-from src.kiss.utils import from_datetime_to_user, parse_user_date, parse_user_datetime
+from kiss.utils import from_datetime_to_user, parse_user_date, parse_user_datetime
 
 
 class Month:

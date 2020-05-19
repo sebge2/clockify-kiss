@@ -2,12 +2,12 @@ import os
 import sys
 from typing import List
 
-from src.kiss.clockify_api import ClockifyApi
-from src.kiss.time_entries_checker import TimeEntriesCheckReport
-from src.kiss.time_entries_diff import DaysTimeEntriesDiff, DayTimeEntriesDiff, TimeEntryDiff
-from src.kiss.time_entries_file import DateTimeInterval
-from src.kiss.user_settings import UserSettings
-from src.kiss.utils import RESET_FORMAT, COLOR_YELLOW, COLOR_RED, COLOR_GREEN, BOLD, from_seconds_to_hours, from_seconds_to_days
+from kiss.clockify_api import ClockifyApi
+from kiss.time_entries_checker import TimeEntriesCheckReport
+from kiss.time_entries_diff import DaysTimeEntriesDiff, DayTimeEntriesDiff, TimeEntryDiff
+from kiss.time_entries_file import DateTimeInterval
+from kiss.user_settings import UserSettings
+from kiss.utils import RESET_FORMAT, COLOR_YELLOW, COLOR_RED, COLOR_GREEN, BOLD, from_seconds_to_hours, from_seconds_to_days
 
 
 class TimeEntriesReporter:
@@ -21,10 +21,13 @@ class TimeEntriesReporter:
     def create_report(self, time_entries_diff: DaysTimeEntriesDiff, report: TimeEntriesCheckReport) -> str:
         concatenated = []
 
-        with open(self.get_logo_file()) as logo_file:
-            concatenated.append(logo_file.read())
+        try:
+            with open(self.get_logo_file()) as logo_file:
+                concatenated.append(logo_file.read())
+                concatenated.append('\n\n')
+        except IOError as e:
+            concatenated.append('')
 
-        concatenated.append('\n\n')
         concatenated.append(self.create_days_report(time_entries_diff, report))
         concatenated.append('\n\n')
 
@@ -49,11 +52,9 @@ class TimeEntriesReporter:
         return ''.join(concatenated)
 
     def get_logo_file(self):
-        if getattr(sys, 'frozen', False):
-            print('frozen false')
+        if getattr(sys, 'frozen', True):
             return f'{os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))}/logo.txt'
         else:
-            print('frozen true')
             return 'kiss/logo.txt'
 
     def create_days_report(self, time_entries_diff: DaysTimeEntriesDiff, report: TimeEntriesCheckReport) -> str:

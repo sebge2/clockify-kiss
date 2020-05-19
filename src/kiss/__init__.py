@@ -3,13 +3,13 @@ import os
 
 import click
 
-from src.kiss.clockify_api import ClockifyApi
-from src.kiss.time_entries_checker import TimeEntriesChecker, TimeEntriesCheckOption
-from src.kiss.time_entries_diff import TimeEntriesDiffComputer
-from src.kiss.time_entries_file import TimeEntriesFile, Month, Task, DateInterval
-from src.kiss.time_entries_generator import TimeEntriesGenerator
-from src.kiss.time_entries_reporter import TimeEntriesReporter
-from src.kiss.user_settings import UserSettings
+from kiss.clockify_api import ClockifyApi
+from kiss.time_entries_checker import TimeEntriesChecker, TimeEntriesCheckOption
+from kiss.time_entries_diff import TimeEntriesDiffComputer
+from kiss.time_entries_file import TimeEntriesFile, Month, Task, DateInterval
+from kiss.time_entries_generator import TimeEntriesGenerator
+from kiss.time_entries_reporter import TimeEntriesReporter
+from kiss.user_settings import UserSettings
 
 VERBOSE = False
 

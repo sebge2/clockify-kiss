@@ -1,10 +1,10 @@
 from datetime import date
 from typing import List
 
-from src.kiss.time_entries_diff import DaysTimeEntriesDiff, TimeEntryDiff
-from src.kiss.time_entries_generator import GeneratedTimeEntry
-from src.kiss.user_settings import UserSettings
-from src.kiss.utils import from_seconds_to_hours
+from kiss.time_entries_diff import DaysTimeEntriesDiff, TimeEntryDiff
+from kiss.time_entries_generator import GeneratedTimeEntry
+from kiss.user_settings import UserSettings
+from kiss.utils import from_seconds_to_hours
 
 
 class TimeEntriesCheckOption:
