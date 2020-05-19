@@ -50,8 +50,10 @@ class TimeEntriesReporter:
 
     def get_logo_file(self):
         if getattr(sys, 'frozen', False):
+            print('frozen false')
             return f'{os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))}/logo.txt'
         else:
+            print('frozen true')
             return 'kiss/logo.txt'
 
     def create_days_report(self, time_entries_diff: DaysTimeEntriesDiff, report: TimeEntriesCheckReport) -> str:
