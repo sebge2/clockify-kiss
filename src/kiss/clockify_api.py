@@ -56,7 +56,7 @@ class ClockifyApi:
         if self.cached_workspace_projects.__contains__(workspace):
             return self.cached_workspace_projects[workspace]
 
-        r = requests.get(ENDPOINT + f'workspaces/{workspace}/projects/', headers=self.headers)
+        r = requests.get(ENDPOINT + f'workspaces/{workspace}/projects/?page-size=100', headers=self.headers)
         if r.status_code != 200:
             raise Exception(f'Error while retrying projects. Returned message: {r.json()["message"]}, '
                             f'status code: {r.status_code}.')
