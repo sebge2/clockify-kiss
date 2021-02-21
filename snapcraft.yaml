@@ -5,7 +5,7 @@ description: |
 version: '1.0.1'
 apps:
   clockify-kiss:
-    command: clockify-kiss
+    command: clockifyKiss
 base: core18
 parts:
   clockify-kiss:
