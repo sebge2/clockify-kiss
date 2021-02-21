@@ -4,7 +4,10 @@ description: |
   For further details go on: https://github.com/sebge2/clockify-kiss
 version: '1.0.1'
 apps:
-  clockify-kiss:
+  clockifyKiss:
+    environment:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
     command: clockifyKiss
 base: core18
 parts:
