@@ -4,7 +4,7 @@ description: |
   For further details go on: https://github.com/sebge2/clockify-kiss
 version: '1.0.1'
 apps:
-  clockifyKiss:
+  clockify-kiss:
     environment:
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
@@ -19,3 +19,4 @@ plugs:
     interface: home
   clockify-kiss-network:
     interface: network
+confinement: strict
